@@ -13,14 +13,16 @@ const mockUsers = [
     password: '261963',
     email: 'jose@mourinho.com',
     name: 'José',
-    lastname: 'Mourinho'
+    lastname: 'Mourinho',
+    image: '/mourinho_100x100.jpg'
   },
   {
     username: 'zzidane',
     password: '231972',
     email: 'z@zidane.com',
     name: 'Zinedine',
-    lastname: 'Zidane'
+    lastname: 'Zidane',
+    image: '/zidane_100x100.jpg'
   }
 ]
 
