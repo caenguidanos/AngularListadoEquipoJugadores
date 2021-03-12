@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   ForbiddenException,
   Injectable,
   ServiceUnavailableException,
@@ -8,10 +7,8 @@ import {
 
 import { CredentialsDTO } from './auth.dto'
 import { CryptoService } from './crypto.service'
-import { CookieService } from './cookie.service'
 
 import type { User } from './auth.types'
-import type { Response, Request } from 'express'
 
 const mockUsers = [
   {
@@ -34,29 +31,13 @@ const mockUsers = [
 
 @Injectable()
 export class AuthService {
-  constructor(private cryptoService: CryptoService, private cookieService: CookieService) {}
+  constructor(private cryptoService: CryptoService) {}
 
-  async loginUser(res: Response, credentials: CredentialsDTO) {
+  async loginUser(credentials: CredentialsDTO) {
     const user: User = this.verifyUserCredentials(credentials)
     const hash = await this.cryptoService.ironEncrypt(user)
 
-    return { response: this.cookieService.setCookie(res, hash), user }
-  }
-
-  logoutUser(res: Response) {
-    return this.cookieService.removeCookie(res)
-  }
-
-  async profile(req: Request) {
-    const token = this.cookieService.getCookie(req)
-    if (!token) throw new BadRequestException('no auth cookie')
-
-    try {
-      const user = await this.cryptoService.ironDecrypt(token)
-      return user
-    } catch (error) {
-      throw new ServiceUnavailableException(error.message)
-    }
+    return { ...user, hash }
   }
 
   private verifyUserCredentials(credentials: CredentialsDTO): User {
@@ -71,7 +52,12 @@ export class AuthService {
     const notHasAccess = user.password !== credentials.password
     if (notHasAccess) throw new UnauthorizedException('invalid credentials')
 
-    delete user.password
-    return user
+    return {
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      lastname: user.lastname,
+      image: user.image
+    }
   }
 }

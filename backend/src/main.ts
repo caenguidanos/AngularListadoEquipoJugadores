@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core'
 
-import * as cookieParser from 'cookie-parser'
 import * as compression from 'compression'
 import * as helmet from 'helmet'
 import * as morgan from 'morgan'
@@ -10,7 +9,6 @@ import { AppModule } from './app.module'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true })
 
-  app.use(cookieParser())
   app.use(compression())
   app.use(helmet())
   app.use(morgan('dev'))

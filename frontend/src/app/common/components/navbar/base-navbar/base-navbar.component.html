@@ -1,0 +1,16 @@
+<nav>
+  <pre>
+    {{ sessionStoreQuery.user$ | async | json }}
+  </pre>
+  <ul>
+    <li><a routerLink="/">home</a></li>
+    <li><a routerLink="/teams">teams</a></li>
+    <li><a routerLink="/events">events</a></li>
+    <li *ngIf="sessionStoreQuery.isLoggedIn$ | async; else loginLink">
+      <a routerLink="/user/logout">logout</a>
+    </li>
+    <ng-template #loginLink>
+      <li><a routerLink="/user/login">login</a></li>
+    </ng-template>
+  </ul>
+</nav>

@@ -1,7 +1,8 @@
-export interface User {
+export interface SessionUser {
+  username: string
   name: string
   lastname: string
   email: string
-  username: string
   image: string
+  hash: string
 }

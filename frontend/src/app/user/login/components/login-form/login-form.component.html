@@ -5,8 +5,7 @@
       <input type="text" formControlName="username" />
     </label>
     <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
-      <div *ngIf="username?.errors?.required">Userrname required</div>
-      <div *ngIf="username?.errors?.email">Is email</div>
+      <div *ngIf="username?.errors?.required">Username required</div>
     </div>
   </div>
   <div>

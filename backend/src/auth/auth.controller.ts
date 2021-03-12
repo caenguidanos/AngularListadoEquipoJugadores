@@ -1,5 +1,4 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common'
-import { Request, Response } from 'express'
+import { Body, Controller, Post, UseGuards } from '@nestjs/common'
 
 import { CredentialsDTO } from './auth.dto'
 
@@ -12,18 +11,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  async loginUser(@Body() credentials: CredentialsDTO, @Res() res: Response) {
-    const { response, user } = await this.authService.loginUser(res, credentials)
-    return response.status(200).send(user)
-  }
-
-  @Post('logout')
-  logout(@Res() res: Response) {
-    return this.authService.logoutUser(res).status(200).send('logged out')
-  }
-
-  @Get('profile')
-  profile(@Req() req: Request) {
-    return this.authService.profile(req)
+  async loginUser(@Body() credentials: CredentialsDTO) {
+    return await this.authService.loginUser(credentials)
   }
 }
