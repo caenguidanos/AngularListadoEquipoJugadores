@@ -26,3 +26,10 @@ cd frontend && \
     npm i && \
     npm start
 ```
+
+### 4. Credentials
+
+| username  |       email       | password |
+| :-------: | :---------------: | :------: |
+| jmourinho | jose@mourinho.com |  261963  |
+|  zzidane  |   z@zidane.com    |  231972  |

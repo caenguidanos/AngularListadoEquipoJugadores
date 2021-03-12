@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import Iron from '@hapi/iron'
+
+import * as Iron from '@hapi/iron'
 
 @Injectable()
 export class CryptoService {
