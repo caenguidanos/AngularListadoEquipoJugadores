@@ -4,8 +4,7 @@ import type { Request } from 'express'
 
 type ValidateAPIKey = { providedToken: string }
 function validateApiKey(arg: ValidateAPIKey): boolean {
-  const apiKey =
-    '9VY2ei2HF9CobgwtBoUhEwyFWSzFUZclLhgAWYrodjyMU6vD1q96HmxwMnkJWXdvQGD1Ss0CYuHbYz5ogCnc5M4m4lmyTfdXiTs3'
+  const apiKey = process.env.API_KEY
 
   if (!arg.providedToken) return false
 
