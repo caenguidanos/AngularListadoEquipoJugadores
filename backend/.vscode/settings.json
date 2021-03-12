@@ -1,0 +1,21 @@
+{
+  "workbench.iconTheme": "vs-minimal",
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.decorations.colors": true,
+  "workbench.editor.decorations.badges": true,
+
+  "explorer.sortOrder": "type",
+  "explorer.compactFolders": false,
+
+  "editor.fontFamily": "'JetBrains Mono Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.formatOnSave": true,
+  "editor.fontWeight": "500",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 30,
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "phase",
+  "editor.cursorWidth": 3,
+  "editor.tabSize": 2,
+  "editor.suggestSelection": "first"
+}
