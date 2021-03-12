@@ -1,11 +1,17 @@
-import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  ServiceUnavailableException,
+  UnauthorizedException
+} from '@nestjs/common'
 
 import { CredentialsDTO } from './auth.dto'
 import { CryptoService } from './crypto.service'
 import { CookieService } from './cookie.service'
 
 import type { User } from './auth.types'
-import type { Response } from 'express'
+import type { Response, Request } from 'express'
 
 const mockUsers = [
   {
@@ -39,6 +45,18 @@ export class AuthService {
 
   logoutUser(res: Response) {
     return this.cookieService.removeCookie(res)
+  }
+
+  async profile(req: Request) {
+    const token = this.cookieService.getCookie(req)
+    if (!token) throw new BadRequestException('no auth cookie')
+
+    try {
+      const user = await this.cryptoService.ironDecrypt(token)
+      return user
+    } catch (error) {
+      throw new ServiceUnavailableException(error.message)
+    }
   }
 
   private verifyUserCredentials(credentials: CredentialsDTO): User {

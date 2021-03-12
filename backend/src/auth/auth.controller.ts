@@ -1,4 +1,4 @@
-import { Body, Controller, InternalServerErrorException, Post, Req, Res, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common'
 import { Request, Response } from 'express'
 
 import { CredentialsDTO } from './auth.dto'
@@ -20,5 +20,10 @@ export class AuthController {
   @Post('logout')
   logout(@Res() res: Response) {
     return this.authService.logoutUser(res).status(200).send('logged out')
+  }
+
+  @Get('profile')
+  profile(@Req() req: Request) {
+    return this.authService.profile(req)
   }
 }
