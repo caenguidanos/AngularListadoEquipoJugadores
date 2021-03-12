@@ -1,4 +1,10 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common'
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+  ForbiddenException
+} from '@nestjs/common'
 import { Observable } from 'rxjs'
 import type { Request } from 'express'
 
@@ -17,10 +23,16 @@ export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const request: Request = context.switchToHttp().getRequest()
 
-    const authHeader = request.headers.authorization.split(/\s/)
+    let authHeader: string[]
+
+    try {
+      authHeader = request.headers.authorization.split(/\s/)
+    } catch (error) {
+      throw new ForbiddenException('no api_key in header')
+    }
+
     const isNotBearer = authHeader[0] !== 'Bearer'
 
-    if (!authHeader) throw new UnauthorizedException('no api_key in header')
     if (isNotBearer) throw new UnauthorizedException('invalid api_key format')
 
     return validateApiKey({ providedToken: authHeader[1] })
