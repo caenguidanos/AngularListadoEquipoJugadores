@@ -1,11 +1,8 @@
 ## AngularListadoEquipoJugadores
 
-### 1. Run `db`
+#### 0. Create file _/backend/.env.local_ with `.example` values
 
-```bash
-# from root dir
-docker run -v "$(pwd)/db:/data/db" -d -p 27017:27017 mongo:latest
-```
+### 1. MongoDb Runs on `MongoDb Atlas`
 
 ### 2. Run `backend`
 
@@ -33,7 +30,3 @@ cd frontend && \
 | :-------: | :---------------: | :------: |
 | jmourinho | jose@mourinho.com |  261963  |
 |  zzidane  |   z@zidane.com    |  231972  |
-
-### 5. API key
-
-- 9VY2ei2HF9CobgwtBoUhEwyFWSzFUZclLhgAWYrodjyMU6vD1q96HmxwMnkJWXdvQGD1Ss0CYuHbYz5ogCnc5M4m4lmyTfdXiTs3
