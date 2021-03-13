@@ -6,11 +6,11 @@ import { catchError } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
 @Injectable()
-export class LeaguesInterceptor implements HttpInterceptor {
+export class TeamsInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const isRoute = request.url.match(/\/leagues/g)
+    const isRoute = request.url.match(/\/teams/g)
 
     if (isRoute) {
       request = request.clone({
@@ -22,9 +22,6 @@ export class LeaguesInterceptor implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError((err: HttpErrorResponse) => {
           switch (err.status) {
-            case 403:
-              alert('Credenciales invalidas')
-              break
             default:
               alert('Errorcico')
               break

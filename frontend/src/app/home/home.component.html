@@ -1,9 +1,17 @@
-<pre *ngIf="leaguesStoreQuery.selectedLeague$ | async as selectedLeague">
-  Selected League: {{ selectedLeague }}
-</pre>
-<pre>
-  {{ sessionStoreQuery.user$ | async | json }}
-</pre>
-<pre>
-  {{ leaguesStoreQuery.leagues$ | async | json }}
-</pre>
+<div class="grid gap-8">
+  <pre *ngIf="leaguesStoreQuery.selectedLeague$ | async as selectedLeague">
+    Selected League: {{ selectedLeague }}
+  </pre>
+  <p>User</p>
+  <pre>
+    {{ sessionStoreQuery.user$ | async | json }}
+  </pre>
+  <p>Teams</p>
+  <pre>
+    {{ teamsStoreQuery.teams$ | async | json }}
+  </pre>
+  <p>Leagues</p>
+  <pre>
+    {{ leaguesStoreQuery.leagues$ | async | json }}
+  </pre>
+</div>

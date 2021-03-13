@@ -5,7 +5,8 @@ import { map, mergeMap } from 'rxjs/operators'
 import { SessionStore } from 'src/app/common/store/session/session.store'
 import { LeaguesService } from '../../services/leagues.service'
 import { LeaguesStoreQuery } from '../../store/leagues.query'
-import { League } from '../../store/leagues.types'
+
+import type { League } from '../../store/leagues.types'
 
 @Component({
   selector: 'app-league-selector',
