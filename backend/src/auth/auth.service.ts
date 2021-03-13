@@ -4,7 +4,7 @@ import { CredentialsDTO } from './auth.dto'
 import { CryptoService } from './crypto.service'
 
 import type { User } from './auth.types'
-import { from, Observable } from 'rxjs'
+import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 const mockUsers = [

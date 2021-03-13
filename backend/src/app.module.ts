@@ -9,6 +9,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
 import { LeaguesModule } from './leagues/leagues.module'
+import { TeamsModule } from './teams/teams.module'
 
 @Module({
   imports: [
@@ -24,9 +25,13 @@ import { LeaguesModule } from './leagues/leagues.module'
       inject: [ConfigService]
     }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local'], ignoreEnvFile: false }),
-    ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public') }),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'public'),
+      exclude: ['teams', 'leagues', 'auth']
+    }),
     AuthModule,
-    LeaguesModule
+    LeaguesModule,
+    TeamsModule
   ],
   controllers: [AppController],
   providers: [AppService]
