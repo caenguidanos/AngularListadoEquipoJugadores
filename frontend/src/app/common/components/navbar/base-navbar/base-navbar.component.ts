@@ -8,7 +8,5 @@ import { SessionStoreQuery } from '../../../store/session/session.query'
   styleUrls: ['./base-navbar.component.scss']
 })
 export class BaseNavbarComponent implements OnInit {
-  constructor(public sessionStoreQuery: SessionStoreQuery) {}
-
   ngOnInit(): void {}
 }

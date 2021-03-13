@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -17,7 +17,8 @@ import { TeamsComponent } from './teams/teams.component'
 
 import { LoginComponent } from './user/login/login.component'
 import { LoginFormComponent } from './user/login/components/login-form/login-form.component'
-import { LoginFormCardComponent } from './user/login/components/login-form-card/login-form-card.component'
+import { LoginModalComponent } from './user/login/components/login-modal/login-modal.component'
+import { LoginLeagueSelectorComponent } from './user/login/components/login-league-selector/login-league-selector.component'
 
 import { environment } from '../environments/environment'
 
@@ -31,15 +32,17 @@ import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
     BaseFooterComponent,
     LoginComponent,
     LoginFormComponent,
-    LoginFormCardComponent,
+    LoginModalComponent,
     HomeComponent,
     EventsComponent,
-    TeamsComponent
+    TeamsComponent,
+    LoginLeagueSelectorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],

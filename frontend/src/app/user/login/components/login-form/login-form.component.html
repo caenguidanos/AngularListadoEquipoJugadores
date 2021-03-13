@@ -1,22 +1,24 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>
-      Username or email
-      <input type="text" formControlName="username" />
-    </label>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="grid gap-3">
+  <div class="grid">
+    <input type="text" formControlName="username" placeholder="usuario o email" class="form-field" />
     <div *ngIf="username?.invalid && (username?.dirty || username?.touched)">
-      <div *ngIf="username?.errors?.required">Username required</div>
+      <small *ngIf="username?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
     </div>
   </div>
-  <div>
-    <label>
-      Password
-      <input type="password" formControlName="password" />
-    </label>
+  <div class="grid">
+    <input type="password" formControlName="password" placeholder="contraseña" class="form-field" />
     <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-      <div *ngIf="password?.errors?.required">Password required</div>
+      <small *ngIf="password?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
     </div>
   </div>
 
-  <button type="submit" [disabled]="!loginForm.valid">Acceder</button>
+  <div class="grid mt-8 w-full">
+    <button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="rounded bg-gray-900 text-white px-11 py-1 border border-black hover:bg-white hover:text-black duration-300 ease-in-out hover:shadow-lg"
+    >
+      Acceder
+    </button>
+  </div>
 </form>

@@ -8,9 +8,6 @@ export const environment = {
     key:
       '9VY2ei2HF9CobgwtBoUhEwyFWSzFUZclLhgAWYrodjyMU6vD1q96HmxwMnkJWXdvQGD1Ss0CYuHbYz5ogCnc5M4m4lmyTfdXiTs3',
     basePath: 'http://localhost:3000'
-  },
-  session: {
-    localStorageKey: 'football:user:token'
   }
 }
 

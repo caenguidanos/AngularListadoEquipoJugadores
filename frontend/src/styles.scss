@@ -1,1 +1,42 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+h3 {
+  @apply text-2xl;
+  @apply font-bold;
+}
+
+.form-field {
+  @apply w-full p-2 bg-white border;
+  @apply cursor-text text-gray-900;
+  @apply rounded-md;
+  @apply placeholder-gray-300;
+  @apply focus:border-green-400 focus:outline-none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.form-field-invalid {
+  @apply w-full;
+  @apply p-2;
+  @apply bg-red-50;
+  @apply cursor-text;
+  @apply text-red-500;
+  @apply rounded-md;
+  @apply border-red-500;
+  @apply border;
+  @apply focus:outline-none;
+  @apply placeholder-red-500 placeholder-opacity-60;
+}
+.form-error {
+  @apply text-red-600;
+  @apply text-xs;
+  @apply -mt-2;
+}

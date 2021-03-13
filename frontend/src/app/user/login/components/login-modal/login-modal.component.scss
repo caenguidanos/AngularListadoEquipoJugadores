@@ -1,0 +1,34 @@
+.modal {
+  @apply overflow-x-hidden overflow-y-auto;
+  @apply fixed inset-0 z-50;
+  @apply outline-none focus:outline-none;
+  @apply justify-center items-center flex;
+}
+
+.modal-container {
+  @apply relative;
+  @apply w-96 max-w-7xl;
+  @apply my-6 mx-auto;
+}
+
+.modal-content {
+  @apply relative flex flex-col w-full;
+  @apply border-0;
+  @apply rounded;
+  @apply shadow-lg;
+  @apply bg-white;
+  @apply outline-none focus:outline-none;
+}
+
+.modal-backdrop {
+  @apply opacity-25 bg-black;
+  @apply fixed inset-0 z-40;
+}
+
+.modal-body {
+  @apply p-5;
+}
+
+.modal-header {
+  @apply p-5;
+}
