@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { MongooseModule } from '@nestjs/mongoose'
 
@@ -12,11 +12,16 @@ import { LeaguesModule } from './leagues/leagues.module'
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/football', {
+    MongooseModule.forRootAsync({
       connectionName: 'football',
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTopology: true
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGODB_URI'),
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+      }),
+      inject: [ConfigService]
     }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env.local'], ignoreEnvFile: false }),
     ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public') }),
