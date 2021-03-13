@@ -5,12 +5,12 @@ import { League } from './leagues.types'
 
 export interface LeaguesState {
   data: League[]
-  selectedLeague: number
+  selectedLeague: League | null
 }
 
 export const emptySessionState: LeaguesState = {
   data: [],
-  selectedLeague: 0
+  selectedLeague: null
 }
 
 export function createInitialState(): LeaguesState {

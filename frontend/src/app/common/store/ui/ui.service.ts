@@ -8,9 +8,17 @@ export class UiStoreService {
 
   // Login Modal
   closeLoginModal() {
-    this.uiStore.update({ modals: { loginModal: false } })
+    this.uiStore.update((state) => ({ modals: { ...state.modals, loginModal: false } }))
   }
   openLoginModal() {
-    this.uiStore.update({ modals: { loginModal: true } })
+    this.uiStore.update((state) => ({ modals: { ...state.modals, loginModal: true } }))
+  }
+
+  // League Modal
+  closeLeagueModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, leagueModal: false } }))
+  }
+  openLeagueModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, leagueModal: true } }))
   }
 }

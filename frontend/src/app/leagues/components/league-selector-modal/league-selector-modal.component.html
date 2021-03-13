@@ -1,0 +1,21 @@
+<div *ngIf="uiStoreQuery.leagueModal$ | async" class="modal">
+  <div class="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Seleccione liga</h3>
+      </div>
+      <div class="modal-body">
+        <app-league-selector></app-league-selector>
+        <div class="grid mt-8 w-full">
+          <button
+            (click)="close()"
+            class="rounded bg-gray-900 text-white px-11 py-1 border border-black hover:bg-white hover:text-black duration-300 ease-in-out hover:shadow-lg"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="uiStoreQuery.leagueModal$ | async" class="modal-backdrop"></div>

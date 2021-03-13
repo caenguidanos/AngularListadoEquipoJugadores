@@ -17,12 +17,13 @@ export class TeamsService {
   findLeagueTeamsByID(league_id: number): Observable<Team[]> {
     return this.http.get<Team[]>(environment.api.basePath + '/teams/' + league_id).pipe(
       tap((teams) => {
+        console.log(league_id)
         this.teamsStoreService.updateTeams(teams)
       })
     )
   }
 
-  selectTeam(id: number) {
-    this.teamsStoreService.updateSelectedTeam(id)
+  selectTeam(team: Team) {
+    this.teamsStoreService.updateSelectedTeam(team)
   }
 }

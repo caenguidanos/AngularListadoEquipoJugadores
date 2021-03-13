@@ -5,12 +5,12 @@ import { Team } from './teams.types'
 
 export interface TeamsState {
   data: Team[]
-  selectedTeam: number
+  selectedTeam: Team | null
 }
 
 export const emptySessionState: TeamsState = {
   data: [],
-  selectedTeam: 0
+  selectedTeam: null
 }
 
 export function createInitialState(): TeamsState {

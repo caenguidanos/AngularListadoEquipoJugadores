@@ -1,6 +1,6 @@
 <div class="grid gap-8">
   <pre *ngIf="leaguesStoreQuery.selectedLeague$ | async as selectedLeague">
-    Selected League: {{ selectedLeague }}
+    Selected League: {{ selectedLeague | json }}
   </pre>
   <p>User</p>
   <pre>

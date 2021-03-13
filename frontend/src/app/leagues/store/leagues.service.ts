@@ -11,7 +11,7 @@ export class LeaguesStoreService {
     this.leaguesStore.update((state) => ({ data: leagues }))
   }
 
-  updateSelectedLeague(id: number) {
-    this.leaguesStore.update((state) => ({ selectedLeague: id }))
+  updateSelectedLeague(league: League) {
+    this.leaguesStore.update((state) => ({ selectedLeague: league }))
   }
 }

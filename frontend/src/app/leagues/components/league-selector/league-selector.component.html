@@ -12,7 +12,7 @@
     <div class="grid gap-3">
       <div *ngFor="let league of leagues">
         <div
-          (click)="selectLeague(league.league_id)"
+          (click)="selectLeague(league)"
           class="flex gap-2 border rounded hover:shadow-lg duration-150 ease-in-out p-2 hover:border-green-400 cursor-pointer"
         >
           <img [src]="league.logo" [alt]="league.name" class="rounded-full h-10 w-10" />
@@ -23,13 +23,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="grid mt-8 w-full">
-    <button
-      (click)="sessionStore.reset()"
-      class="rounded bg-gray-900 text-white px-11 py-1 border border-black hover:bg-white hover:text-black duration-300 ease-in-out hover:shadow-lg"
-    >
-      Volver
-    </button>
   </div>
 </div>

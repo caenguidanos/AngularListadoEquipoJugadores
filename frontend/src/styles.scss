@@ -1,7 +1,51 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-/* You can add global styles to this file, and also import other style files */
+
+::-moz-selection {
+  opacity: 100%;
+  @apply text-gray-900 bg-green-200;
+}
+
+::selection {
+  opacity: 100%;
+  @apply text-gray-900 bg-green-200;
+}
+
+*:focus:not(:focus-visible),
+*::before:focus:not(:focus-visible),
+*::after:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url(/assets/fonts/inter/inter.var.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url(/assets/fonts/inter/inter-italic.var.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url(/assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url(/assets/fonts/orbitron/Orbitron-Black.ttf);
+}
 
 h3 {
   @apply text-2xl;
@@ -23,20 +67,37 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-.form-field-invalid {
-  @apply w-full;
-  @apply p-2;
-  @apply bg-red-50;
-  @apply cursor-text;
-  @apply text-red-500;
-  @apply rounded-md;
-  @apply border-red-500;
-  @apply border;
-  @apply focus:outline-none;
-  @apply placeholder-red-500 placeholder-opacity-60;
+.modal {
+  @apply overflow-x-hidden overflow-y-auto;
+  @apply fixed inset-0 z-50;
+  @apply outline-none focus:outline-none;
+  @apply justify-center items-center flex;
 }
-.form-error {
-  @apply text-red-600;
-  @apply text-xs;
-  @apply -mt-2;
+
+.modal-container {
+  @apply relative;
+  @apply w-96 max-w-7xl;
+  @apply my-6 mx-auto;
+}
+
+.modal-content {
+  @apply relative flex flex-col w-full;
+  @apply border-0;
+  @apply rounded;
+  @apply shadow-lg;
+  @apply bg-white;
+  @apply outline-none focus:outline-none;
+}
+
+.modal-backdrop {
+  @apply opacity-25 bg-black;
+  @apply fixed inset-0 z-40;
+}
+
+.modal-body {
+  @apply p-5;
+}
+
+.modal-header {
+  @apply p-5;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { mergeMap } from 'rxjs/operators'
+import { of } from 'rxjs'
+import { mergeMap, tap } from 'rxjs/operators'
 import { AuthService } from '../common/services/auth.service'
 import { SessionStoreQuery } from '../common/store/session/session.query'
 import { LeaguesService } from '../leagues/services/leagues.service'
@@ -27,9 +28,14 @@ export class HomeComponent implements OnInit {
     this.authService.verifyUserCredentials()
     // preload leagues
     this.leaguesService.findAll().subscribe()
-    // subscribe to league_id
+    // subscribe to league
     this.leaguesStoreQuery.selectedLeague$
-      .pipe(mergeMap((league_id) => this.teamsService.findLeagueTeamsByID(league_id)))
+      .pipe(
+        mergeMap((league) => {
+          if (!league?.league_id) return of(false)
+          return this.teamsService.findLeagueTeamsByID(league.league_id)
+        })
+      )
       .subscribe()
   }
 }

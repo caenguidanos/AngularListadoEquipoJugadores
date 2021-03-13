@@ -27,8 +27,9 @@ export class LeaguesService {
     )
   }
 
-  selectLeague(id: number) {
-    this.leaguesStoreService.updateSelectedLeague(id)
+  selectLeague(league: League) {
+    this.leaguesStoreService.updateSelectedLeague(league)
     this.uiStoreService.closeLoginModal()
+    this.uiStoreService.closeLeagueModal()
   }
 }

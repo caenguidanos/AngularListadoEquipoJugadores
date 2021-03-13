@@ -4,13 +4,15 @@ import { Store, StoreConfig } from '@datorama/akita'
 export interface UiState {
   modals: {
     loginModal: boolean
+    leagueModal: boolean
   }
 }
 
 export function createInitialState(): UiState {
   return {
     modals: {
-      loginModal: false
+      loginModal: false,
+      leagueModal: false
     }
   }
 }

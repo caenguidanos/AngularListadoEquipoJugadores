@@ -1,13 +1,40 @@
-<nav>
-  <ul>
-    <li><a routerLink="/">home</a></li>
-    <li><a routerLink="/teams">teams</a></li>
-    <li><a routerLink="/events">events</a></li>
-    <!-- <li *ngIf="sessionStoreQuery.isLoggedIn$ | async; else loginLink">
-      <a routerLink="/user/logout">logout</a>
-    </li> -->
-    <ng-template #loginLink>
-      <li><a routerLink="/user/login">login</a></li>
-    </ng-template>
-  </ul>
+<nav class="fixed bg-gray-800 w-full shadow-xl">
+  <div class="w-full mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
+      <div class="flex-1 flex items-center justify-between">
+        <div class="sm:ml-6">
+          <h1 class="font-accent text-3xl text-white">SOCCER</h1>
+        </div>
+        <div class="flex-shrink-0 flex items-center">
+          <div *ngIf="leaguesStoreQuery.selectedLeague$ | async as league" class="flex space-x-4">
+            <div class="flex items-center gap-5">
+              <div class="flex rounded-full">
+                <img class="h-10 w-10 rounded-full bg-gray-800" [src]="league.logo" [alt]="league.name" />
+              </div>
+              <div
+                class="bg-gray-900 px-3 py-2 rounded-md cursor-pointer hover:border-green-300 border border-transparent duration-300 ease-in-out"
+                (click)="openLeagueModalSelector()"
+              >
+                <p class="text-white text-sm font-bold">{{ league.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="hidden absolute inset-y-0 right-0 md:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <div *ngIf="sessionStoreQuery.user$ | async as user" class="bg-gray-800 text-gray-400">
+          {{ user.name }} {{ user.lastname }}
+        </div>
+
+        <div *ngIf="sessionStoreQuery.isLoggedIn$ | async" class="ml-3 relative">
+          <div *ngIf="sessionStoreQuery.user$ | async as user" class="flex rounded-full">
+            <img class="h-8 w-8 rounded-full bg-gray-800" [src]="user.image | userImage" [alt]="user.email" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>

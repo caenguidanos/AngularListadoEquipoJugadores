@@ -19,14 +19,10 @@ export class LeagueSelectorComponent implements OnInit {
 
   leagues: League[] = []
 
-  constructor(
-    public sessionStore: SessionStore,
-    public leaguesStoreQuery: LeaguesStoreQuery,
-    private leaguesService: LeaguesService
-  ) {}
+  constructor(public leaguesStoreQuery: LeaguesStoreQuery, private leaguesService: LeaguesService) {}
 
-  public selectLeague(id: number) {
-    this.leaguesService.selectLeague(id)
+  public selectLeague(league: League) {
+    this.leaguesService.selectLeague(league)
   }
 
   ngOnInit(): void {

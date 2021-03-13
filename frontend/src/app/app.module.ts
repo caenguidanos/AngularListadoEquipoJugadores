@@ -12,6 +12,8 @@ import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
 import { LeaguesInterceptor } from './leagues/interceptors/leagues.interceptor'
 import { TeamsInterceptor } from './teams/interceptors/teams.interceptor'
 
+import { UserImagePipe } from './common/pipes/user-image.pipe'
+
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 import { BaseLayoutComponent } from './common/components/layout/base-layout/base-layout.component'
@@ -19,7 +21,8 @@ import { BaseNavbarComponent } from './common/components/navbar/base-navbar/base
 import { BaseFooterComponent } from './common/components/footer/base-footer/base-footer.component'
 import { LoginFormComponent } from './user/login/components/login-form/login-form.component'
 import { LoginModalComponent } from './user/login/components/login-modal/login-modal.component'
-import { LeagueSelectorComponent } from './leagues/components/league-selector/league-selector.component'
+import { LeagueSelectorComponent } from './leagues/components/league-selector/league-selector.component';
+import { LeagueSelectorModalComponent } from './leagues/components/league-selector-modal/league-selector-modal.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { LeagueSelectorComponent } from './leagues/components/league-selector/le
     LoginFormComponent,
     LoginModalComponent,
     HomeComponent,
-    LeagueSelectorComponent
+    LeagueSelectorComponent,
+    UserImagePipe,
+    LeagueSelectorModalComponent
   ],
   imports: [
     BrowserModule,

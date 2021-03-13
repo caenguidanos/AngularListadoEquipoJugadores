@@ -6,6 +6,7 @@ import { UiState, UiStore } from './ui.store'
 @Injectable({ providedIn: 'root' })
 export class UiStoreQuery extends Query<UiState> {
   loginModal$ = this.select((state) => state.modals.loginModal)
+  leagueModal$ = this.select((state) => state.modals.leagueModal)
 
   constructor(protected store: UiStore) {
     super(store)
