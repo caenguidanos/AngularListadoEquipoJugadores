@@ -14,15 +14,16 @@ import { BaseFooterComponent } from './common/components/footer/base-footer/base
 import { HomeComponent } from './home/home.component'
 import { EventsComponent } from './events/events.component'
 import { TeamsComponent } from './teams/teams.component'
+import { LeagueSelectorComponent } from './leagues/components/league-selector/league-selector.component'
 
 import { LoginComponent } from './user/login/login.component'
 import { LoginFormComponent } from './user/login/components/login-form/login-form.component'
 import { LoginModalComponent } from './user/login/components/login-modal/login-modal.component'
-import { LoginLeagueSelectorComponent } from './user/login/components/login-league-selector/login-league-selector.component'
 
 import { environment } from '../environments/environment'
 
 import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
+import { LeaguesInterceptor } from './leagues/interceptors/leagues.interceptor'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
     HomeComponent,
     EventsComponent,
     TeamsComponent,
-    LoginLeagueSelectorComponent
+    LeagueSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +51,11 @@ import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoginInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LeaguesInterceptor,
       multi: true
     }
   ],

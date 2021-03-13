@@ -1,3 +1,9 @@
+<pre *ngIf="leaguesStoreQuery.selectedLeague$ | async as selectedLeague">
+  Selected League: {{ selectedLeague }}
+</pre>
 <pre>
   {{ sessionStoreQuery.user$ | async | json }}
+</pre>
+<pre>
+  {{ leaguesStoreQuery.leagues$ | async | json }}
 </pre>

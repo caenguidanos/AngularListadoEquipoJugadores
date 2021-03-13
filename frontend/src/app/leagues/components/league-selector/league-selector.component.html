@@ -1,16 +1,18 @@
-<div class="grid gap-3">
-  <input type="text" placeholder="Filtrar" class="form-field" [formControl]="filterValue" />
-  <div class="h-72 overflow-y-auto grid gap-3 shadow-inner p-2 rounded">
-    <div *ngIf="filteredLeagues.length === 0; else leagues" class="p-5">
-      <p>No existen resultados para la búsqueda:</p>
-      <div>
-        <pre class="text-gray-400">{{ filterValue.value }}</pre>
-      </div>
-    </div>
-
-    <ng-template #leagues>
-      <div *ngFor="let league of filteredLeagues">
+<div class="grid gap-5">
+  <div class="grid gap-3">
+    <select name="seasons" [formControl]="seasonValue" class="form-field">
+      <option disabled>Seleccione temporada</option>
+      <option value="2018">2018</option>
+      <option value="2019">2019</option>
+      <option value="2020">2020</option>
+    </select>
+    <input type="text" placeholder="Filtrar" class="form-field" [formControl]="filterValue" />
+  </div>
+  <div *ngIf="leagues.length !== 0" class="h-72 overflow-y-auto grid gap-3 shadow-inner p-2 rounded">
+    <div class="grid gap-3">
+      <div *ngFor="let league of leagues">
         <div
+          (click)="selectLeague(league.league_id)"
           class="flex gap-2 border rounded hover:shadow-lg duration-150 ease-in-out p-2 hover:border-green-400 cursor-pointer"
         >
           <img [src]="league.logo" [alt]="league.name" class="rounded-full h-10 w-10" />
@@ -20,7 +22,7 @@
           </div>
         </div>
       </div>
-    </ng-template>
+    </div>
   </div>
   <div class="grid mt-8 w-full">
     <button

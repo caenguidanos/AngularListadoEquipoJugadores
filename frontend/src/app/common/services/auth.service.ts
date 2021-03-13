@@ -11,7 +11,9 @@ export class AuthService {
 
   verifyUserCredentials() {
     this.sessionStoreQuery.isLoggedIn$.subscribe((v) => {
-      if (!v) this.uiStoreService.openLoginModal()
+      if (!v) {
+        this.uiStoreService.openLoginModal()
+      }
     })
   }
 }
