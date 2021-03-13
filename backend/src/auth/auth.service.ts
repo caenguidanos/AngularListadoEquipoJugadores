@@ -1,14 +1,11 @@
-import {
-  ForbiddenException,
-  Injectable,
-  ServiceUnavailableException,
-  UnauthorizedException
-} from '@nestjs/common'
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common'
 
 import { CredentialsDTO } from './auth.dto'
 import { CryptoService } from './crypto.service'
 
 import type { User } from './auth.types'
+import { from, Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
 const mockUsers = [
   {
@@ -33,11 +30,16 @@ const mockUsers = [
 export class AuthService {
   constructor(private cryptoService: CryptoService) {}
 
-  async loginUser(credentials: CredentialsDTO) {
+  loginUser(credentials: CredentialsDTO): Observable<any> {
     const user: User = this.verifyUserCredentials(credentials)
-    const hash = await this.cryptoService.ironEncrypt(user)
-
-    return { ...user, hash }
+    return this.cryptoService.ironEncrypt(user).pipe(
+      map((hash: string) => {
+        return {
+          ...user,
+          hash
+        }
+      })
+    )
   }
 
   private verifyUserCredentials(credentials: CredentialsDTO): User {

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
+import { from, Observable } from 'rxjs'
 
 import { League, LeagueDocument } from './leagues.schema'
 
@@ -8,7 +9,7 @@ import { League, LeagueDocument } from './leagues.schema'
 export class LeaguesService {
   constructor(@InjectModel(League.name) private leagueModel: Model<LeagueDocument>) {}
 
-  async findAll(): Promise<League[]> {
-    return this.leagueModel.find().sort({ name: 'asc' })
+  findAll(): Observable<League[]> {
+    return from(this.leagueModel.find().sort({ name: 'asc' }))
   }
 }

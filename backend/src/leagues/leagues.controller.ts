@@ -11,7 +11,7 @@ export class LeaguesController {
   constructor(private leaguesService: LeaguesService) {}
 
   @Get()
-  async findAll() {
-    return await this.leaguesService.findAll()
+  findAll() {
+    return this.leaguesService.findAll()
   }
 }
