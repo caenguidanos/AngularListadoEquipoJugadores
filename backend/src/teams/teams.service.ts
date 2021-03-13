@@ -18,17 +18,17 @@ export class TeamsService {
 
   findAllByLeagueID(league_id: number) {
     return from(import('../../cache.json')).pipe(
-      mergeMap(({ teams }) =>
+      mergeMap((cache) =>
         iif(
-          () => teams.includes(league_id),
+          () => cache.teams.includes(league_id),
           from(this.teamModel.find({ league_id })),
           this.retrieveTeamsFromExternalAPI(league_id).pipe(
             mergeMap((leagueTeams) => this.teamModel.insertMany(leagueTeams)),
             tap(() => {
               const cachePath = join(process.cwd(), 'cache.json')
-              const newCache = [...teams, league_id]
+              const newCache = [...cache.teams, league_id]
               unlinkSync(cachePath)
-              writeFileSync(cachePath, JSON.stringify({ teams: newCache }))
+              writeFileSync(cachePath, JSON.stringify({ ...cache, teams: newCache }))
             })
           )
         )
