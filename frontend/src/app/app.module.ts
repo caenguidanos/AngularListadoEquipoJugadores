@@ -12,6 +12,7 @@ import { LoginInterceptor } from './user/login/interceptors/login.interceptor'
 import { LeaguesInterceptor } from './leagues/interceptors/leagues.interceptor'
 import { TeamsInterceptor } from './teams/interceptors/teams.interceptor'
 import { PlayersInterceptor } from './players/interceptors/players.interceptor'
+import { EventsInterceptor } from './events/interceptors/events.interceptor'
 
 import { UserImagePipe } from './common/pipes/user-image.pipe'
 import { IntersectionObserverDirective } from './common/directives/intersection-observer.directive'
@@ -29,10 +30,13 @@ import { LeagueSelectorCardComponent } from './leagues/components/league-selecto
 import { TeamListCardComponent } from './teams/components/team-list-card/team-list-card.component'
 import { TeamsListViewComponent } from './teams/components/teams-list-view/teams-list-view.component'
 import { PlayersListViewComponent } from './players/components/players-list-view/players-list-view.component'
-import { PlayerListCardComponent } from './players/components/player-list-card/player-list-card.component';
-import { PlayerDeleteModalComponent } from './players/components/player-delete-modal/player-delete-modal.component';
-import { PlayerCreateModalComponent } from './players/components/player-create-modal/player-create-modal.component';
+import { PlayerListCardComponent } from './players/components/player-list-card/player-list-card.component'
+import { PlayerDeleteModalComponent } from './players/components/player-delete-modal/player-delete-modal.component'
+import { PlayerCreateModalComponent } from './players/components/player-create-modal/player-create-modal.component'
 import { PlayerUpdateModalComponent } from './players/components/player-update-modal/player-update-modal.component'
+import { EventsComponent } from './events/events.component'
+import { EventsTableComponent } from './events/components/events-table/events-table.component';
+import { MenuComponent } from './common/components/menu/menu.component'
 
 @NgModule({
   declarations: [
@@ -54,7 +58,10 @@ import { PlayerUpdateModalComponent } from './players/components/player-update-m
     PlayerListCardComponent,
     PlayerDeleteModalComponent,
     PlayerCreateModalComponent,
-    PlayerUpdateModalComponent
+    PlayerUpdateModalComponent,
+    EventsComponent,
+    EventsTableComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +90,11 @@ import { PlayerUpdateModalComponent } from './players/components/player-update-m
     {
       provide: HTTP_INTERCEPTORS,
       useClass: PlayersInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: EventsInterceptor,
       multi: true
     }
   ],
