@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
+
+import { Event } from '../../store/events.types'
 
 @Component({
   selector: 'app-events-table',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events-table.component.scss']
 })
 export class EventsTableComponent implements OnInit {
+  @Input() events: Event[] | undefined
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

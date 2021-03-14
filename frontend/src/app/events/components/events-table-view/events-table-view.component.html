@@ -1,0 +1,3 @@
+<div *ngIf="eventsStoreQuery.events$ | async as events">
+  <app-events-table [events]="events"></app-events-table>
+</div>

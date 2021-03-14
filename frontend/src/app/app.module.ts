@@ -35,8 +35,9 @@ import { PlayerDeleteModalComponent } from './players/components/player-delete-m
 import { PlayerCreateModalComponent } from './players/components/player-create-modal/player-create-modal.component'
 import { PlayerUpdateModalComponent } from './players/components/player-update-modal/player-update-modal.component'
 import { EventsComponent } from './events/events.component'
-import { EventsTableComponent } from './events/components/events-table/events-table.component';
+import { EventsTableComponent } from './events/components/events-table/events-table.component'
 import { MenuComponent } from './common/components/menu/menu.component'
+import { EventsTableViewComponent } from './events/components/events-table-view/events-table-view.component'
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { MenuComponent } from './common/components/menu/menu.component'
     PlayerUpdateModalComponent,
     EventsComponent,
     EventsTableComponent,
+    EventsTableViewComponent,
     MenuComponent
   ],
   imports: [

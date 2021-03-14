@@ -3,6 +3,7 @@ import { iif, of } from 'rxjs'
 import { mergeMap } from 'rxjs/operators'
 
 import { AuthService } from './common/services/auth.service'
+import { EventsService } from './events/services/events.service'
 import { LeaguesService } from './leagues/services/leagues.service'
 import { LeaguesStoreQuery } from './leagues/store/leagues.query'
 import { PlayersService } from './players/services/players.service'
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     private leaguesStoreQuery: LeaguesStoreQuery,
     private teamsStoreQuery: TeamsStoreQuery,
     private teamsService: TeamsService,
-    private playersService: PlayersService
+    private playersService: PlayersService,
+    private eventsService: EventsService
   ) {}
 
   ngOnInit() {
@@ -48,5 +50,8 @@ export class AppComponent implements OnInit {
         })
       )
       .subscribe()
+
+    // subscribe to events
+    this.eventsService.findAll().subscribe()
   }
 }

@@ -1,1 +1,46 @@
-<p>events-table works!</p>
+<div class="overflow-x-auto">
+  <div
+    class="min-w-screen min-h-screen bg-gray-700 flex items-center justify-center font-mono overflow-hidden"
+  >
+    <div class="w-full lg:w-5/6">
+      <div class="bg-white shadow-md rounded my-6">
+        <table class="min-w-max w-full table-auto">
+          <thead>
+            <tr class="bg-gray-600 text-gray-100 uppercase text-sm leading-normal">
+              <th class="py-3 px-6 text-left">Jugador</th>
+              <th class="py-3 px-6 text-left">Evento</th>
+              <th class="py-3 px-6 text-center">Equipo</th>
+              <th class="py-3 px-6 text-center">Asistente</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-600 text-sm font-light">
+            <tr
+              *ngFor="let event of events"
+              class="border-b border-gray-600 text-gray-200 bg-gray-800 hover:bg-gray-800 hover:text-green-400 duration-300 ease-in-out"
+            >
+              <td class="py-3 px-6 text-left whitespace-nowrap">
+                <div class="flex items-center">
+                  <span class="font-medium">{{ event.player }}</span>
+                </div>
+              </td>
+              <td class="py-3 px-6 text-left">
+                <div class="flex items-center">
+                  <span>{{ event.teamName }}</span>
+                </div>
+              </td>
+
+              <td class="py-3 px-6 text-center">
+                <span class="bg-green-500 text-white py-1 px-3 rounded-full text-xs">{{ event.type }}</span>
+              </td>
+              <td class="py-3 px-6 text-center">
+                <div class="flex item-center justify-center">
+                  <p>{{ event.assist }}</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
