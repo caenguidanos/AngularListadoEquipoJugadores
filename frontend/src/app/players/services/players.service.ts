@@ -20,6 +20,21 @@ export class PlayersService {
     private playersStore: PlayersStore
   ) {}
 
+  createPlayer(playerDTO: Partial<Player>): Observable<Player> {
+    const url = `${environment.api.basePath}/players`
+
+    return this.http.post<Player>(url, playerDTO).pipe(
+      tap((player) => {
+        if (player) {
+          alert('Jugador creado correctamente')
+          this.playersStore.update((state) => ({
+            data: [...state.data, player]
+          }))
+        }
+      })
+    )
+  }
+
   deletePlayerByID(_id: string): Observable<any> {
     const url = `${environment.api.basePath}/players/${_id}`
 

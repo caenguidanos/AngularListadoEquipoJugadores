@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Query, Delete, Param, Put, Body } from '@nestjs/common'
+import { Controller, Get, UseGuards, Delete, Param, Put, Body, Post } from '@nestjs/common'
 
 import { AuthGuard } from 'src/auth/auth.guard'
 
@@ -24,5 +24,10 @@ export class PlayersController {
   @Delete(':id')
   deleteById(@Param('id') id: string) {
     return this.playersService.findByIdAndDelete(id)
+  }
+
+  @Post()
+  create(@Body() DTO: TeamPlayerDTO) {
+    return this.playersService.create(DTO)
   }
 }

@@ -1,1 +1,57 @@
-<p>player-create-modal works!</p>
+<div *ngIf="uiStoreQuery.createPlayerModal$ | async" class="modal">
+  <div class="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Crear jugador</h3>
+      </div>
+      <div class="modal-body grid gap-3">
+        <form [formGroup]="createPlayerForm" (ngSubmit)="onSubmit()" class="grid gap-3">
+          <div class="grid">
+            <input type="text" formControlName="firstname" placeholder="Nombre" class="form-field" />
+            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)">
+              <small *ngIf="firstname?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
+            </div>
+          </div>
+
+          <div class="grid">
+            <input type="text" formControlName="lastname" placeholder="Apellido" class="form-field" />
+            <div *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)">
+              <small *ngIf="lastname?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
+            </div>
+          </div>
+
+          <div class="grid">
+            <input type="text" formControlName="position" placeholder="Posición" class="form-field" />
+            <div *ngIf="position?.invalid && (position?.dirty || position?.touched)">
+              <small *ngIf="position?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
+            </div>
+          </div>
+
+          <div class="grid">
+            <input type="number" formControlName="age" placeholder="Edad" class="form-field" />
+            <div *ngIf="age?.invalid && (age?.dirty || age?.touched)">
+              <small *ngIf="age?.errors?.required" class="text-red-500 text-xs">Campo requerido</small>
+            </div>
+          </div>
+
+          <div class="grid">
+            <input type="text" formControlName="nationality" placeholder="Nacionalidad" class="form-field" />
+            <div *ngIf="nationality?.invalid && (nationality?.dirty || nationality?.touched)">
+              <small *ngIf="nationality?.errors?.required" class="text-red-500 text-xs"
+                >Campo requerido</small
+              >
+            </div>
+          </div>
+
+          <div class="grid w-full">
+            <button (click)="close()" class="button">Salir</button>
+          </div>
+          <div class="grid w-full">
+            <button type="submit" class="button" [disabled]="!createPlayerForm.valid">Crear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="uiStoreQuery.createPlayerModal$ | async" class="modal-backdrop"></div>

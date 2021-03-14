@@ -15,6 +15,11 @@ export class PlayersService {
     private httpService: HttpService
   ) {}
 
+  create(DTO: TeamPlayerDTO) {
+    const createdPlayer = new this.playerModel(DTO)
+    return createdPlayer.save()
+  }
+
   findByIdAndUpdate(id: string, DTO: TeamPlayerDTO) {
     this.playerModel.findByIdAndUpdate(id, DTO)
   }
