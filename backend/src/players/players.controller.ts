@@ -10,9 +10,10 @@ import { TeamPlayerDTO } from './players.types'
 export class PlayersController {
   constructor(private playersService: PlayersService) {}
 
-  @Get()
-  findAllByLeagueID(@Query('team_id') team_id: string, @Query('season') season: string) {
-    return this.playersService.findAllByTeamIDAndSeason(parseInt(team_id), parseInt(season))
+  @Get(':team_season')
+  findAllByTeamIDAndSeason(@Param('team_season') team_season: string) {
+    const [team_id, season] = team_season.split(/_/).map((v) => parseInt(v))
+    return this.playersService.findAllByTeamIDAndSeason(team_id, season)
   }
 
   @Put(':id')

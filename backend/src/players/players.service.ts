@@ -1,8 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { join } from 'path'
-import { unlinkSync, writeFileSync } from 'fs'
-import { from, iif, Observable } from 'rxjs'
+import { from, iif, Observable, of } from 'rxjs'
 import { map, mergeMap, tap } from 'rxjs/operators'
 import { Model } from 'mongoose'
 
@@ -26,20 +24,15 @@ export class PlayersService {
   }
 
   findAllByTeamIDAndSeason(team_id: number, season: number) {
-    return from(import('../../cache.json')).pipe(
-      mergeMap((cache) =>
+    return from(this.playerModel.find({ team_id, season })).pipe(
+      tap((players) => console.log(JSON.stringify({ players }))),
+      mergeMap((players) =>
         iif(
-          () => cache.players.includes(`${team_id}-${season}`),
-          from(this.playerModel.find({ team_id, season })),
+          () => players.length === 0,
           this.retrievePlayersFromExternalAPI(team_id, season).pipe(
-            mergeMap((teamPlayers) => this.playerModel.insertMany(teamPlayers)),
-            tap(() => {
-              const cachePath = join(process.cwd(), 'cache.json')
-              const newCache = [...cache.players, `${team_id}-${season}`]
-              unlinkSync(cachePath)
-              writeFileSync(cachePath, JSON.stringify({ ...cache, players: newCache }))
-            })
-          )
+            mergeMap((teamPlayers) => this.playerModel.insertMany(teamPlayers))
+          ),
+          of(players)
         )
       )
     )
@@ -57,21 +50,18 @@ export class PlayersService {
         }
       )
       .pipe(
-        map((res) => res.data.api.players),
-        map((rawPlayers) => {
-          return rawPlayers.map((rawPlayer) => {
-            return {
-              player_id: rawPlayer.player_id,
-              firstname: rawPlayer.firstname,
-              lastname: rawPlayer.lastname,
-              position: rawPlayer.position,
-              age: rawPlayer.age,
-              nacionality: rawPlayer.nacionality,
-              season,
-              team_id
-            }
-          })
-        })
+        map(({ data }) =>
+          data.api.players.map((rawPlayer) => ({
+            player_id: rawPlayer.player_id,
+            firstname: rawPlayer.firstname,
+            lastname: rawPlayer.lastname,
+            position: rawPlayer.position,
+            age: rawPlayer.age,
+            nationality: rawPlayer.nationality,
+            season,
+            team_id
+          }))
+        )
       )
   }
 }

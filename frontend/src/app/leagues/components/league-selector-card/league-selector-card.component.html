@@ -1,0 +1,7 @@
+<div *ngIf="league" (click)="selectLeague(league)" class="league-card">
+  <img app-lazy-image [image]="league.logo" [alt]="league.name" class="rounded-full h-10 w-10" />
+  <div class="grid">
+    <h5 class="text-lg font-semibold">{{ league.name }}</h5>
+    <p class="text-gray-500 text-sm">Temporada: {{ league.season }}</p>
+  </div>
+</div>

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { map, mergeMap } from 'rxjs/operators'
 
-import { SessionStore } from 'src/app/common/store/session/session.store'
-import { LeaguesService } from '../../services/leagues.service'
 import { LeaguesStoreQuery } from '../../store/leagues.query'
 
 import type { League } from '../../store/leagues.types'
@@ -17,13 +15,9 @@ export class LeagueSelectorComponent implements OnInit {
   filterValue = new FormControl('')
   seasonValue = new FormControl('Seleccione temporada')
 
-  leagues: League[] = []
+  public leagues: League[] = []
 
-  constructor(public leaguesStoreQuery: LeaguesStoreQuery, private leaguesService: LeaguesService) {}
-
-  public selectLeague(league: League) {
-    this.leaguesService.selectLeague(league)
-  }
+  constructor(public leaguesStoreQuery: LeaguesStoreQuery) {}
 
   ngOnInit(): void {
     this.seasonValue.valueChanges

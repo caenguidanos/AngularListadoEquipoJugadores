@@ -4,7 +4,7 @@ export interface TeamPlayer {
   lastname: string
   position: string
   age: number
-  nacionality: string
+  nationality: string
   season: number
   team_id: number
 }
@@ -15,7 +15,7 @@ export interface TeamPlayerDTO {
   lastname?: string
   position?: string
   age?: number
-  nacionality?: string
+  nationality?: string
   season?: number
   team_id?: number
 }

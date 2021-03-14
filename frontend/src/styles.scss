@@ -53,11 +53,10 @@ h3 {
 }
 
 .form-field {
-  @apply w-full p-2 bg-white border;
-  @apply cursor-text text-gray-900;
-  @apply rounded-md;
+  @apply w-full p-2 bg-gray-800;
+  @apply cursor-text text-green-500;
   @apply placeholder-gray-300;
-  @apply focus:border-green-400 focus:outline-none;
+  @apply focus:border-green-500 focus:outline-none;
 }
 
 input:-webkit-autofill,
@@ -81,11 +80,10 @@ input:-webkit-autofill:active {
 }
 
 .modal-content {
+  @apply text-white;
   @apply relative flex flex-col w-full;
-  @apply border-0;
-  @apply rounded;
   @apply shadow-lg;
-  @apply bg-white;
+  @apply bg-gray-700;
   @apply outline-none focus:outline-none;
 }
 
@@ -100,4 +98,8 @@ input:-webkit-autofill:active {
 
 .modal-header {
   @apply p-5;
+}
+
+.button {
+  @apply bg-gray-800 text-gray-100 px-11 py-1 hover:bg-green-500 hover:text-white duration-300 ease-in-out hover:shadow-lg;
 }

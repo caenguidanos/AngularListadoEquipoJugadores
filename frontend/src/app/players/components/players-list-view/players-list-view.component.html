@@ -1,0 +1,16 @@
+<div
+  *ngIf="playersStoreQuery.players$ | async as players"
+  class="relative bg-gray-800 shadow-xl h-full p-6 pb-12 overflow-y-auto border-l-2 border-green-400"
+>
+  <div
+    (click)="closeViewer()"
+    class="absolute flex items-center justify-center left-0 top-0 bg-red-500 h-5 w-5 cursor-pointer text-white"
+  >
+    X
+  </div>
+  <div class="grid gap-3 lg:grid-cols-2">
+    <div *ngFor="let player of players">
+      <app-player-list-card [player]="player"></app-player-list-card>
+    </div>
+  </div>
+</div>

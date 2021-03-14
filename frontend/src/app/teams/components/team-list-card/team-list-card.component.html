@@ -1,0 +1,8 @@
+<div *ngIf="team" class="team-card" (click)="teamsService.selectTeam(team)">
+  <img [src]="team.logo" [alt]="team.name" class="team-image" />
+
+  <div>
+    <h4 class="text-white text-xl font-semibold">{{ team.name }}</h4>
+    <p class="text-gray-100 text-sm">{{ team.country }}</p>
+  </div>
+</div>

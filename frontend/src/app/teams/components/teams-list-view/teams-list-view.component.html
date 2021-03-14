@@ -1,0 +1,26 @@
+<div *ngIf="leagueStoreQuery.selectedLeague$ | async">
+  <input
+    type="text"
+    class="form-field border-t-2 border-green-400"
+    placeholder="Buscar"
+    [formControl]="filterValue"
+  />
+</div>
+<div *ngIf="filteredTeams.length !== 0">
+  <div
+    *ngIf="teamsStoreQuery.selectedTeam$ | async as selectedTeam"
+    class="bg-green-400 text-white flex gap-3 p-3"
+  >
+    <img [src]="selectedTeam.logo" [alt]="selectedTeam.name" class="h-8 w-8;" />
+
+    <div>
+      <h4 class="text-white text-lg font-semibold">{{ selectedTeam.name }}</h4>
+    </div>
+  </div>
+
+  <div class="grid grid-flow-row lg:grid-cols-2 min-w-full gap-3 p-5">
+    <div *ngFor="let team of filteredTeams">
+      <app-team-list-card [team]="team"></app-team-list-card>
+    </div>
+  </div>
+</div>

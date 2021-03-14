@@ -1,0 +1,15 @@
+.team-image {
+  @apply h-12 w-12;
+  @apply duration-200 ease-in-out transition-all;
+  filter: grayscale(100%);
+}
+
+.team-card {
+  @apply duration-200 ease-in-out transition-all;
+  @apply flex border-2 border-gray-900 hover:border-green-400 p-3 gap-3 items-center hover:shadow-lg cursor-pointer bg-gray-800  hover:bg-green-500;
+  &:hover {
+    .team-image {
+      filter: grayscale(0%);
+    }
+  }
+}

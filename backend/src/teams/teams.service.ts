@@ -1,8 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { join } from 'path'
-import { unlinkSync, writeFileSync } from 'fs'
-import { from, iif, Observable } from 'rxjs'
+import { from, iif, Observable, of } from 'rxjs'
 import { map, mergeMap, tap } from 'rxjs/operators'
 import { Model } from 'mongoose'
 
@@ -17,20 +15,15 @@ export class TeamsService {
   ) {}
 
   findAllByLeagueID(league_id: number) {
-    return from(import('../../cache.json')).pipe(
-      mergeMap((cache) =>
+    return from(this.teamModel.find({ league_id })).pipe(
+      tap((teams) => console.log(JSON.stringify({ teams }))),
+      mergeMap((teams) =>
         iif(
-          () => cache.teams.includes(league_id),
-          from(this.teamModel.find({ league_id })),
+          () => teams.length === 0,
           this.retrieveTeamsFromExternalAPI(league_id).pipe(
-            mergeMap((leagueTeams) => this.teamModel.insertMany(leagueTeams)),
-            tap(() => {
-              const cachePath = join(process.cwd(), 'cache.json')
-              const newCache = [...cache.teams, league_id]
-              unlinkSync(cachePath)
-              writeFileSync(cachePath, JSON.stringify({ ...cache, teams: newCache }))
-            })
-          )
+            mergeMap((leagueTeams) => this.teamModel.insertMany(leagueTeams))
+          ),
+          of(teams)
         )
       )
     )
@@ -48,18 +41,15 @@ export class TeamsService {
         }
       )
       .pipe(
-        map((res) => res.data.api.teams),
-        map((rawTeams) => {
-          return rawTeams.map((rawTeam) => {
-            return {
-              team_id: rawTeam.team_id,
-              name: rawTeam.name,
-              logo: rawTeam.logo,
-              country: rawTeam.country,
-              league_id
-            }
-          })
-        })
+        map(({ data }) =>
+          data.api.teams.map((rawTeam) => ({
+            team_id: rawTeam.team_id,
+            name: rawTeam.name,
+            logo: rawTeam.logo,
+            country: rawTeam.country,
+            league_id
+          }))
+        )
       )
   }
 }

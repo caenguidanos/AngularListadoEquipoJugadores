@@ -21,7 +21,7 @@ export class Player {
   age: number
 
   @Prop()
-  nacionality: string
+  nationality: string
 
   @Prop()
   season: number

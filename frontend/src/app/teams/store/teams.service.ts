@@ -11,7 +11,7 @@ export class TeamsStoreService {
     this.teamsStore.update((state) => ({ data: teams }))
   }
 
-  updateSelectedTeam(team: Team) {
+  updateSelectedTeam(team: Team | null) {
     this.teamsStore.update((state) => ({ selectedTeam: team }))
   }
 }

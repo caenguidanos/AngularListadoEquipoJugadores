@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 import { UiStoreService } from 'src/app/common/store/ui/ui.service'
+import { PlayersStore } from 'src/app/players/store/players.store'
 
 import { environment } from 'src/environments/environment'
 
@@ -16,7 +17,8 @@ export class LeaguesService {
   constructor(
     private http: HttpClient,
     private leaguesStoreService: LeaguesStoreService,
-    private uiStoreService: UiStoreService
+    private uiStoreService: UiStoreService,
+    private playersStore: PlayersStore
   ) {}
 
   findAll(): Observable<League[]> {
@@ -31,5 +33,6 @@ export class LeaguesService {
     this.leaguesStoreService.updateSelectedLeague(league)
     this.uiStoreService.closeLoginModal()
     this.uiStoreService.closeLeagueModal()
+    this.playersStore.reset()
   }
 }

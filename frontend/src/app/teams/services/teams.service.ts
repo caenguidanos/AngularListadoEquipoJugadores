@@ -15,12 +15,9 @@ export class TeamsService {
   constructor(private http: HttpClient, private teamsStoreService: TeamsStoreService) {}
 
   findLeagueTeamsByID(league_id: number): Observable<Team[]> {
-    return this.http.get<Team[]>(environment.api.basePath + '/teams/' + league_id).pipe(
-      tap((teams) => {
-        console.log(league_id)
-        this.teamsStoreService.updateTeams(teams)
-      })
-    )
+    return this.http
+      .get<Team[]>(environment.api.basePath + '/teams/' + league_id)
+      .pipe(tap((teams) => this.teamsStoreService.updateTeams(teams)))
   }
 
   selectTeam(team: Team) {

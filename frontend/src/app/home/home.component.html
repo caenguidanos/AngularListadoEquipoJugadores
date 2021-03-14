@@ -1,17 +1,4 @@
-<div class="grid gap-8">
-  <!-- <pre *ngIf="leaguesStoreQuery.selectedLeague$ | async as selectedLeague">
-    Selected League: {{ selectedLeague | json }}
-  </pre>
-  <p>User</p>
-  <pre>
-    {{ sessionStoreQuery.user$ | async | json }}
-  </pre>
-  <p>Teams</p>
-  <pre>
-    {{ teamsStoreQuery.teams$ | async | json }}
-  </pre>
-  <p>Leagues</p> -->
-  <!-- <pre>
-    {{ leaguesStoreQuery.leagues$ | async | json }}
-  </pre> -->
+<div [ngClass]="!singleView ? 'grid grid-cols-2' : 'grid'">
+  <app-teams-list-view></app-teams-list-view>
+  <app-players-list-view></app-players-list-view>
 </div>
