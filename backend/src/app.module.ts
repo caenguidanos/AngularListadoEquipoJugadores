@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module'
 import { LeaguesModule } from './leagues/leagues.module'
 import { TeamsModule } from './teams/teams.module'
 import { PlayersModule } from './players/players.module'
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { PlayersModule } from './players/players.module'
     AuthModule,
     LeaguesModule,
     TeamsModule,
-    PlayersModule
+    PlayersModule,
+    EventsModule
   ],
   controllers: [AppController],
   providers: [AppService]
