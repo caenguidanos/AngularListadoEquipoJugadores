@@ -29,7 +29,10 @@ import { LeagueSelectorCardComponent } from './leagues/components/league-selecto
 import { TeamListCardComponent } from './teams/components/team-list-card/team-list-card.component'
 import { TeamsListViewComponent } from './teams/components/teams-list-view/teams-list-view.component'
 import { PlayersListViewComponent } from './players/components/players-list-view/players-list-view.component'
-import { PlayerListCardComponent } from './players/components/player-list-card/player-list-card.component'
+import { PlayerListCardComponent } from './players/components/player-list-card/player-list-card.component';
+import { PlayerDeleteModalComponent } from './players/components/player-delete-modal/player-delete-modal.component';
+import { PlayerCreateModalComponent } from './players/components/player-create-modal/player-create-modal.component';
+import { PlayerUpdateModalComponent } from './players/components/player-update-modal/player-update-modal.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { PlayerListCardComponent } from './players/components/player-list-card/p
     UserImagePipe,
     IntersectionObserverDirective,
     PlayersListViewComponent,
-    PlayerListCardComponent
+    PlayerListCardComponent,
+    PlayerDeleteModalComponent,
+    PlayerCreateModalComponent,
+    PlayerUpdateModalComponent
   ],
   imports: [
     BrowserModule,

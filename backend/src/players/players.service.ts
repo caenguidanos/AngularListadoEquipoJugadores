@@ -20,12 +20,11 @@ export class PlayersService {
   }
 
   findByIdAndDelete(id: string) {
-    this.playerModel.findByIdAndDelete(id)
+    return this.playerModel.findByIdAndDelete(id)
   }
 
   findAllByTeamIDAndSeason(team_id: number, season: number) {
     return from(this.playerModel.find({ team_id, season })).pipe(
-      tap((players) => console.log(JSON.stringify({ players }))),
       mergeMap((players) =>
         iif(
           () => players.length === 0,

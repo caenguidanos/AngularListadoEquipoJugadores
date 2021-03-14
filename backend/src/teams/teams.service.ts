@@ -16,7 +16,6 @@ export class TeamsService {
 
   findAllByLeagueID(league_id: number) {
     return from(this.teamModel.find({ league_id })).pipe(
-      tap((teams) => console.log(JSON.stringify({ teams }))),
       mergeMap((teams) =>
         iif(
           () => teams.length === 0,

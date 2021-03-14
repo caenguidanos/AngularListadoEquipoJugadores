@@ -1,0 +1,22 @@
+::-moz-selection {
+  opacity: 100%;
+  @apply text-gray-900 bg-green-200;
+}
+
+::selection {
+  opacity: 100%;
+  @apply text-gray-900 bg-green-200;
+}
+
+*:focus:not(:focus-visible),
+*::before:focus:not(:focus-visible),
+*::after:focus:not(:focus-visible) {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

@@ -5,10 +5,12 @@ import { Player } from './players.types'
 
 export interface PlayersState {
   data: Player[]
+  selectedPlayer: Player | null
 }
 
 export const emptySessionState: PlayersState = {
-  data: []
+  data: [],
+  selectedPlayer: null
 }
 
 export function createInitialState(): PlayersState {

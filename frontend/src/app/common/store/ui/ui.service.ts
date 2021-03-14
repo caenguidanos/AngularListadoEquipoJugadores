@@ -21,4 +21,26 @@ export class UiStoreService {
   openLeagueModal() {
     this.uiStore.update((state) => ({ modals: { ...state.modals, leagueModal: true } }))
   }
+
+  // Player Delete Modal
+  closePlayerDeleteModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerDeleteModal: false } }))
+  }
+  openPlayerDeleteModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerDeleteModal: true } }))
+  }
+  // Player Create Modal
+  closePlayerCreateModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerCreateModal: false } }))
+  }
+  openPlayerCreateModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerCreateModal: true } }))
+  }
+  // Player Update Modal
+  closePlayerUpdateModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerUpdateModal: false } }))
+  }
+  openPlayerUpdateModal() {
+    this.uiStore.update((state) => ({ modals: { ...state.modals, playerCreateModal: true } }))
+  }
 }

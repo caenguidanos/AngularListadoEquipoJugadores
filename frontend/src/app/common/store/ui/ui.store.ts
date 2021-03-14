@@ -5,6 +5,9 @@ export interface UiState {
   modals: {
     loginModal: boolean
     leagueModal: boolean
+    playerDeleteModal: boolean
+    playerCreateModal: boolean
+    playerUpdateModal: boolean
   }
 }
 
@@ -12,7 +15,10 @@ export function createInitialState(): UiState {
   return {
     modals: {
       loginModal: false,
-      leagueModal: false
+      leagueModal: false,
+      playerDeleteModal: false,
+      playerCreateModal: false,
+      playerUpdateModal: false
     }
   }
 }

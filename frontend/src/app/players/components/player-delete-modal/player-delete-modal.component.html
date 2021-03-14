@@ -1,0 +1,18 @@
+<div *ngIf="uiStoreQuery.deletePlayerModal$ | async" class="modal">
+  <div class="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>¿Desea continuar?</h3>
+      </div>
+      <div class="modal-body grid gap-3">
+        <div class="grid w-full">
+          <button (click)="close()" class="button">Cerrar</button>
+        </div>
+        <div class="grid w-full">
+          <button (click)="delete()" class="button bg-red-500">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="uiStoreQuery.deletePlayerModal$ | async" class="modal-backdrop"></div>

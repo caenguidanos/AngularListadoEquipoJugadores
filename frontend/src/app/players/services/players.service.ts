@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
 import { PlayersStoreService } from '../store/players.service'
+import { PlayersStore } from '../store/players.store'
 
 import type { Player } from '../store/players.types'
 
@@ -13,7 +14,26 @@ import type { Player } from '../store/players.types'
   providedIn: 'root'
 })
 export class PlayersService {
-  constructor(private http: HttpClient, private playersStoreService: PlayersStoreService) {}
+  constructor(
+    private http: HttpClient,
+    private playersStoreService: PlayersStoreService,
+    private playersStore: PlayersStore
+  ) {}
+
+  deletePlayerByID(_id: string): Observable<any> {
+    const url = `${environment.api.basePath}/players/${_id}`
+
+    return this.http.delete<Player>(url).pipe(
+      tap((player) => {
+        if (player) {
+          alert('Jugador eliminado correctamente')
+          this.playersStore.update((state) => ({
+            data: state.data.filter((v) => v._id !== player._id)
+          }))
+        }
+      })
+    )
+  }
 
   findAllByTeamIDAndSeason(team_id: number, season: number): Observable<Player[]> {
     const url = `${environment.api.basePath}/players/${team_id}_${season}`

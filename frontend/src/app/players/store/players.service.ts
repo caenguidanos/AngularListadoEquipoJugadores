@@ -10,4 +10,8 @@ export class PlayersStoreService {
   updatePlayers(players: Player[]) {
     this.playersStore.update((state) => ({ data: players }))
   }
+
+  updatePlayer(player: Player) {
+    this.playersStore.update((state) => ({ selectedPlayer: player }))
+  }
 }

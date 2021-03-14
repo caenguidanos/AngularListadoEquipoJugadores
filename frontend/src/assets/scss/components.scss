@@ -1,0 +1,44 @@
+.form-field {
+  @apply w-full p-2 bg-gray-800;
+  @apply cursor-text text-green-500;
+  @apply placeholder-gray-300;
+  @apply focus:border-green-500 focus:outline-none;
+}
+
+.modal {
+  @apply overflow-x-hidden overflow-y-auto;
+  @apply fixed inset-0 z-50;
+  @apply outline-none focus:outline-none;
+  @apply justify-center items-center flex;
+}
+
+.modal-container {
+  @apply relative;
+  @apply w-96 max-w-7xl;
+  @apply my-6 mx-auto;
+}
+
+.modal-content {
+  @apply text-white;
+  @apply relative flex flex-col w-full;
+  @apply shadow-lg;
+  @apply bg-gray-700;
+  @apply outline-none focus:outline-none;
+}
+
+.modal-backdrop {
+  @apply opacity-25 bg-black;
+  @apply fixed inset-0 z-40;
+}
+
+.modal-body {
+  @apply p-5;
+}
+
+.modal-header {
+  @apply p-5;
+}
+
+.button {
+  @apply bg-gray-800 text-gray-100 px-11 py-1 hover:bg-green-500 hover:text-white duration-300 ease-in-out hover:shadow-lg;
+}
