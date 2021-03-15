@@ -24,7 +24,6 @@ export class IntersectionObserverDirective implements OnInit {
 
   private callback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
     entries.forEach((entry: IntersectionObserverEntry) => {
-      console.log(this.image)
       if (entry.isIntersecting && this.image) {
         const target = entry.target as HTMLImageElement
         target.src = this.image
